@@ -17,7 +17,6 @@ while (!validNum)
 
     }
 }
-
 // Ask user which rules to implement
 bool[] activatedRules = { false, false, false, false, false, false };
 bool choosingRules = true;
@@ -26,13 +25,21 @@ while (choosingRules)
     Console.WriteLine("Please enter a rule to add, or exit by typing N:");
     Console.WriteLine("Rule 1: Fizz  /nl Rule 2: Buzz /nl Rule 3: Bang /nl Rule 4: Bong /nl 5: Fezz  6: Reverse");
     var response = Console.ReadLine();
-    if (response == "N")
+    if (response.ToUpper() == "N")
     {
         choosingRules = false;
     }
     else if (int.TryParse(response, out int answer))
     {
-        activatedRules[answer - 1] = true;
+        if(answer >= 7) { 
+             Console.WriteLine("Such a rule does not exist. Please choose from rules 1-6");
+        } else {
+             activatedRules[answer - 1] = true;
+        }
+    }
+    else
+    {
+        Console.WriteLine("Please enter a valid number or type N to exit");
     }
     if (!activatedRules.Contains(false))
     {
